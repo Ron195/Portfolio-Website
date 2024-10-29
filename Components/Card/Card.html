@@ -1,0 +1,65 @@
+<!-- Components/Card/Card.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Card Component Practice</title>
+        <!-- Link to Global Styles -->
+        <link rel="stylesheet" href="../../style.css"> <!-- Adjusted Path -->
+        <!-- Link to Card Component Styles -->
+        <link rel="stylesheet" href="./Card.css"> <!-- Adjusted Path -->
+    </head>
+<body>
+    <!-- Card Component -->
+    <div class="card">
+        <div class="card-content">
+            <!-- Media Container with Relative Positioning -->
+            <div class="media-container">
+                <!-- Media Content -->
+                <div class="media-content">
+                    <!-- Images inside the scrollable container -->
+                    <img src="./card_1/1.png" alt="Image 1">
+                    <img src="./card_1/2.jpg" alt="Image 2">
+                    <!-- Add more images as needed -->
+                </div>
+
+                <!-- **Custom Scrollbar Starts Here** -->
+                <div class="custom-scrollbar">
+                    <div class="scrollbar-thumb"></div>
+                </div>
+                <!-- **Custom Scrollbar Ends Here** -->
+            </div>
+
+            <!-- Header Container -->
+            <div class="header-container">
+                <!-- Project Name -->
+                <div class="project-name">Project Name</div>
+                <!-- Project Description -->
+                <div class="project-description">Project Description</div>
+            </div>
+
+            <!-- Tags Container -->
+            <div class="tags-container">
+                <!-- Informational Text -->
+                <div class="tags-text">What was done here?</div>
+
+                <!-- Tags Row -->
+                <div class="tags-row">
+                    <!-- Tag Components -->
+                    <div class="tag">New</div>
+                    <div class="tag">Sale</div>
+                    <div class="tag">Featured</div>
+                    <div class="tag">Limited</div>
+                    <div class="tag">Hot</div>
+                    <div class="tag">Exclusive</div>
+                    <div class="tag">Best</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript File -->
+    <script src="./Card.js"></script> <!-- Adjusted Path -->
+</body>
+</html>

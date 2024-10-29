@@ -1,0 +1,352 @@
+/* Components/Card/Card.css */
+
+/* 1. Font Face for Geomanist Regular */
+@font-face {
+    font-family: 'Geomanist Regular';
+    src: url('../../Fonts/Geomanist-Regular-Italic/Webfont/Geomanist-Regular-Webfont/geomanist-regular-webfont.woff2') format('woff2'),
+         url('../../Fonts/Geomanist-Regular-Italic/Webfont/Geomanist-Regular-Webfont/geomanist-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Ensures text is visible while font loads */
+}
+
+/* 2. CSS Variables for Reusability */
+:root {
+    /* Card Variables */
+    --card-border-radius: 0.375rem; /* 6px */
+    --transition-duration: 0.3s;
+    --card-max-width: 64rem;        /* 1024px */
+
+    /* Media Content Variables */
+    --media-content-bg-color: #813030; /* Updated color */
+
+    /* Tag Component Variables */
+    --tag-bg-color: rgba(255, 255, 255, 0.25); /* White with 25% opacity */
+
+    /* Informational Text Variables */
+    --tags-text-color: #E1E1E1;  /* Light Gray for informational text */
+
+    /* Project Name Variables */
+    --project-name-color: #FFFFFF;  /* White color for Project Name */
+
+    /* General Font Family */
+    --font-family: 'Geomanist Regular', sans-serif;
+
+    /* Font Sizes */
+    --font-size-large: 2.25rem;    /* 36px */
+    --font-size-medium: 1.3125rem; /* 21px */
+    --font-size-small: 1rem;       /* 16px */
+    --font-size-xs: 0.875rem;      /* 14px */
+
+    /* Spacing */
+    --spacing-small: 0.5rem;       /* 8px */
+    --spacing-medium: 1rem;        /* 16px */
+    --spacing-large: 1.25rem;      /* 20px */
+    --spacing-xl: 1.75rem;         /* 28px */
+
+    /* Tag Dimensions */
+    --tag-height-large: 2.5rem;    /* 40px */
+    --tag-height-medium: 2.1875rem; /* 35px */
+    --tag-height-small: 1.875rem;  /* 30px */
+}
+
+/* 3. Base Styles */
+.card {
+    width: 60%; /* Default width for large screens */
+    max-width: var(--card-max-width);
+    height: 36em; /* Default height for large screens */
+    background-color: transparent;
+    border: none;
+    border-radius: var(--card-border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transform-origin: top;
+    transition: height var(--transition-duration) ease;
+    font-family: var(--font-family);
+}
+
+/* Ensure all text within the card uses the custom font */
+.card * {
+    font-family: inherit;
+}
+
+/* Hover Effect: Only for medium and large screens that support hover */
+@media (hover: hover) and (pointer: fine) and (min-width: 37.5625em) { /* 600px = 37.5em */
+    .card:hover {
+        height: 48em; /* Expanded height on hover */
+    }
+}
+
+/* Media Content Styles */
+.media-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--media-content-bg-color);
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* **Hide Default Scrollbar** */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.media-content::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+
+/* Style images inside media-content */
+.media-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* **Custom Scrollbar Styles Start Here** */
+
+/* Media Container Styling */
+.media-container {
+    position: relative; /* Establishes a new positioning context */
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevents the container itself from scrolling */
+}
+
+/* Custom Scrollbar Container */
+.custom-scrollbar {
+    pointer-events: none; /* Allow clicks to pass through except for the thumb */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px; /* Width as per your design */
+    height: 100%; /* Matches .media-container's height */
+    background: rgba(255, 255, 255, 0.25); /* White with 25% transparency */
+    box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.1); /* Drop shadow */
+    -webkit-backdrop-filter: blur(2px); /* Safari support */
+    backdrop-filter: blur(2px); /* Slight background blur */
+    border-radius: 5px; 
+    z-index: 10; /* Below scrollbar-thumb */
+    /* Ensure that .custom-scrollbar doesn't interfere with scrolling */
+    overflow: hidden;
+}
+
+
+/* Custom Scrollbar Container */
+.custom-scrollbar {
+    pointer-events: none; /* Allow clicks to pass through */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px; /* Width as per your design */
+    height: 100%; /* Matches .media-container's height */
+    background: rgba(255, 255, 255, 0.25); /* White with 25% transparency */
+    box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.1); /* Drop shadow */
+    -webkit-backdrop-filter: blur(2px); /* Safari support */
+    backdrop-filter: blur(2px); /* Slight background blur */
+    border-radius: 5px; 
+    z-index: 10; /* Below scrollbar-thumb */
+    overflow: hidden;
+}
+
+/* Scrollbar Thumb */
+.scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; /* Initial height; will be updated via JavaScript */
+    background: #f1f1f181; /* Thumb color */
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background 0.3s; /* Smooth transition for hover effect */
+    z-index: 11; /* Above .custom-scrollbar */
+    pointer-events: auto; /* Enable interaction with the thumb */
+}
+
+/* Hover effect for the scrollbar thumb */
+.scrollbar-thumb:hover {
+    background: #EEEEEE; /* Change to lighter color on hover */
+}
+
+
+/* **Custom Scrollbar Styles End Here** */
+
+/* Card Content Styling */
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Prevent text selection during drag */
+.no-select {
+    -webkit-user-select: none; /* Safari support */
+    user-select: none;
+}
+
+/* Header Container Styling */
+.header-container {
+    position: absolute;
+    top: var(--spacing-large); /* 20px */
+    left: var(--spacing-large); /* 20px */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-small); /* 8px */
+    z-index: 3;
+}
+
+/* Project Name Styling */
+.project-name {
+    color: var(--project-name-color);
+    font-size: var(--font-size-large); /* 36px */
+    font-weight: bold;
+}
+
+/* Project Description Styling */
+.project-description {
+    color: #E1E1E1; /* Light Gray */
+    font-size: var(--font-size-medium); /* 21px */
+}
+
+/* Tags Container Styling */
+.tags-container {
+    position: absolute;
+    bottom: var(--spacing-large); /* 20px */
+    left: var(--spacing-large); /* 20px */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-medium); /* 16px */
+    z-index: 3;
+}
+
+/* Informational Text Styling */
+.tags-text {
+    color: var(--tags-text-color);
+    font-size: var(--font-size-medium); /* 21px */
+}
+
+/* Tags Row Styling */
+.tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-medium); /* 16px */
+}
+
+/* Tag Component Styling */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.625rem; /* 10px */
+    border-radius: 0.25rem; /* 4px */
+    white-space: nowrap;
+    font-size: var(--font-size-medium); /* 21px */
+    height: var(--tag-height-large); /* 40px */
+    color: #FFFFFF;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* 0 2px 4px */
+    background-color: rgba(255, 255, 255, 0.5); /* Fallback background color */
+}
+
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+    .tag {
+        background-color: var(--tag-bg-color);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+}
+
+/* Medium Screens (Tablets and Small Laptops) */
+@media (min-width: 37.5625em) and (max-width: 64em) { /* 600px - 1024px */
+    .card {
+        width: 80%;         /* Adjusted width */
+        height: 50em;       /* Adjusted height */
+        max-width: none;
+        /* Keep transition for hover effect */
+    }
+
+    .project-description {
+        font-size: var(--font-size-small);    /* 16px */
+    }
+
+    .tags-text {
+        font-size: var(--font-size-small);    /* 16px */
+    }
+
+    .tags-row {
+        gap: 0.875rem;          /* 14px */
+    }
+
+    .tag {
+        font-size: var(--font-size-small);    /* 16px */
+        height: var(--tag-height-medium);     /* 35px */
+    }
+}
+
+/* Small Screens (Mobile Devices) */
+@media (max-width: 37.5em) { /* 600px */
+    .card {
+        width: 100%;        /* Full width */
+        height: 60em;       /* Adjusted height */
+        max-width: none;
+        transition: none;   /* Remove hover effect */
+    }
+  
+
+    /* Disable hover effect on small screens */
+    .card:hover {
+        height: 60em; /* Same as default height */
+    }
+
+    /* Media Content Adjustments */
+    .media-content {
+        top: 50%; /* Start from middle */
+        height: 78%;
+        transform: translateY(-50%); /* Center vertically */
+    }
+
+    /* Header Container */
+    .header-container {
+        width: calc(100% - 2.5rem); /* Full width minus side paddings (40px total) */
+    }
+
+    /* Tags Container */
+    .tags-container {
+        width: calc(100% - 2.5rem); /* Full width minus side paddings (40px total) */
+    }
+    
+    
+    /* Text Color Adjustments */
+    .project-name {
+        color: #6242F9; /* Purple */
+        -webkit-text-stroke: 0.5px #6242F9; /* Tiny stroke */
+    }
+
+    .project-description {
+        font-size: var(--font-size-xs);    /* 14px */
+        -webkit-text-stroke: 0.5px rgb(94, 94, 94); /* Tiny stroke */
+        color: rgb(94, 94, 94);
+    }
+
+    .tags-text {
+        font-size: var(--font-size-xs);    /* 14px */
+        -webkit-text-stroke: 0.5px rgb(94, 94, 94); /* Tiny stroke */
+        color: rgb(94, 94, 94);
+    }
+
+    .tags-row {
+        gap: 0.75rem;          /* 12px */
+    }
+
+    .tag {
+        font-size: var(--font-size-xs);    /* 14px */
+        height: var(--tag-height-small);    /* 30px */
+        background-color: #6242F9; /* Change background color to Purple */
+    }
+}
